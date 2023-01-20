@@ -19,10 +19,13 @@ code {
   transform: rotate(var(--angle)) translateX(var(--x)) translateY(var(--y));
 }
 
-.canvas-container {
-  width: 80%;
-  height: 80%;
+.stage {
   background-color: #333;
+}
+.stage-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .canvas-container .points {

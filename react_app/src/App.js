@@ -1,14 +1,21 @@
-import Game from "./components/Game";
+// import Game from "./components/Game";
+import PaintWidget from "./components/PaintWidget";
+import { useState } from "react";
 
 function App() {
-  const angle = 0;
-  const center = { x: 50, y: 50 };
+  // const angle = 100;
+  // const center = { x: 50, y: 50 };
+  var width = 1000;
+  var height = 500;
+  const [barriers, setBarriers] = useState([]);
   return (
     <div className="App">
       <header className="App-header">
-        <p>TensorFlow Ai powered car simulator.</p>
+        <h1>TensorFlow Ai powered car simulator.</h1>
       </header>
-      <Game angle={angle} center={center}></Game>
+        <p>Start drawing and the AI will attempt to drive around your 'barriers'</p>
+      <PaintWidget  barriers={barriers} setBarriers={setBarriers} width={width} height={height}/>
+      {/* <Game angle={angle} center={center}></Game> */}
     </div>
   );
 }
