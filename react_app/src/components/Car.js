@@ -12,8 +12,6 @@ function Car({ angle, pos, size }) {
         width={size.width}
         height={size.height}
         rotation={angle}
-        // offsetX={10}
-        // offsetY={5}
         fill="red"
       />
     </Group>

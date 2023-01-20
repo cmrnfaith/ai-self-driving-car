@@ -5,10 +5,10 @@ import Car from "./Car";
 
 const ball_radius = 5;
 const car_size = { height: 20, width: 10 };
-const car_pos = (center) => ({ x: center.x - 10, y: center.y - 5 });
-const ball1_pos = (center) => ({ x: center.x - 17.5, y: center.y - 7.5 });
-const ball2_pos = (center) => ({ x: center.x - 5, y: center.y - 12.5 });
-const ball3_pos = (center) => ({ x: center.x + 7.5, y: center.y - 7.5 });
+const car_pos = (center) => ({ x: center.x , y: center.y });
+const ball1_pos = (center) => ({ x: center.x - 7.5, y: center.y - 2.5 });
+const ball2_pos = (center) => ({ x: center.x + 5, y: center.y - 7.5 });
+const ball3_pos = (center) => ({ x: center.x + 17.5, y: center.y - 2.5 });
 
 function Game({ angle, center }) {
   const carRef = useRef();
