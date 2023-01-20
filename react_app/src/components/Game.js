@@ -1,8 +1,7 @@
 import React, { useRef, useState } from "react";
-import { Layer, Stage } from "react-konva";
+import { Layer } from "react-konva";
 import Ball from "./Ball";
 import Car from "./Car";
-import PaintWidget from "./PaintWidget";
 
 const ball_radius = 5;
 const car_size = { height: 20, width: 10 };
@@ -12,9 +11,9 @@ function Game({ angle, center }) {
   const ball1Ref = useRef();
   const ball2Ref = useRef();
   const ball3Ref = useRef();
-  const ballOneFill = useState("red");
-  const ballTwoFill = useState("cyan");
-  const ballThreeFill = useState("red");
+  const ballOneFill = useState(true);
+  const ballTwoFill = useState(false);
+  const ballThreeFill = useState(false);
 
   const car_pos = (center, size) => ({
     x: center.x - size.width / 2,
@@ -44,7 +43,6 @@ function Game({ angle, center }) {
   }
 
   return (
-    <Stage width={window.innerWidth} height={window.innerHeight}>
       <Layer>
         <Car
           ref={carRef}
@@ -71,8 +69,6 @@ function Game({ angle, center }) {
           fill={ballThreeFill}
         />
       </Layer>
-      <PaintWidget/>
-    </Stage>
   );
 }
 

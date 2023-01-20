@@ -1,7 +1,8 @@
 import { useState, useRef } from "react";
 import { Layer, Line, Stage } from "react-konva";
+import Game from "./Game";
 
-function PaintWidget({ barriers, setBarriers, width, height }) {
+function PaintWidget({ barriers, setBarriers, width, height, angle, center }) {
   const [tool, setTool] = useState("pen");
 
   const isDrawing = useRef(false);
@@ -71,6 +72,7 @@ function PaintWidget({ barriers, setBarriers, width, height }) {
           onTouchEnd={handleMouseUp}
           className="stage"
         >
+        <Game angle={angle} center={center}></Game>
           <Layer>
             {barriers.map((barriers, i) => (
               <Line
