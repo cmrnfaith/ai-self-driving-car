@@ -2,13 +2,10 @@ import React, { useRef, useState } from "react";
 import { Layer, Stage } from "react-konva";
 import Ball from "./Ball";
 import Car from "./Car";
+import PaintWidget from "./PaintWidget";
 
 const ball_radius = 5;
 const car_size = { height: 20, width: 10 };
-const car_pos = (center) => ({ x: center.x , y: center.y });
-const ball1_pos = (center) => ({ x: center.x - 7.5, y: center.y - 2.5 });
-const ball2_pos = (center) => ({ x: center.x + 5, y: center.y - 7.5 });
-const ball3_pos = (center) => ({ x: center.x + 17.5, y: center.y - 2.5 });
 
 function Game({ angle, center }) {
   const carRef = useRef();
@@ -19,34 +16,62 @@ function Game({ angle, center }) {
   const ballTwoFill = useState("cyan");
   const ballThreeFill = useState("red");
 
+  const car_pos = (center, size) => ({
+    x: center.x - size.width / 2,
+    y: center.y - size.height / 2,
+  });
+  const ball1_pos = (center, angle, radius) => {
+    var angleRad = degreesToRad(angle);
+    const x = center.x + radius * Math.cos(angleRad);
+    const y = center.y + radius * Math.sin(angleRad);
+    return { x, y };
+  };
+  const ball2_pos = (center, angle, radius) => {
+    var angleRad = degreesToRad(angle);
+    const x = center.x + radius * Math.cos(angleRad + Math.PI / 3);
+    const y = center.y + radius * Math.sin(angleRad + Math.PI / 3);
+    return { x, y };
+  };
+  const ball3_pos = (center, angle, radius) => {
+    var angleRad = degreesToRad(angle);
+    const x = center.x + radius * Math.cos(angleRad + (2 * Math.PI) / 3);
+    const y = center.y + radius * Math.sin(angleRad + (2 * Math.PI) / 3);
+    return { x, y };
+  };
+
+  function degreesToRad(degrees) {
+    return (degrees * Math.PI) / 180;
+  }
+
   return (
     <Stage width={window.innerWidth} height={window.innerHeight}>
       <Layer>
         <Car
           ref={carRef}
           angle={angle}
-          pos={car_pos(center)}
+          pos={car_pos(center, car_size)}
           size={car_size}
         />
         <Ball
           ref={ball1Ref}
-          pos={ball1_pos(center)}
+          pos={ball1_pos(center, angle, ball_radius)}
           radius={ball_radius}
           fill={ballOneFill}
         />
         <Ball
           ref={ball2Ref}
-          pos={ball2_pos(center)}
+          pos={ball2_pos(center, angle, ball_radius)}
           radius={ball_radius}
           fill={ballTwoFill}
         />
         <Ball
           ref={ball3Ref}
-          pos={ball3_pos(center)}
+          pos={ball3_pos(center, angle, ball_radius)}
           radius={ball_radius}
           fill={ballThreeFill}
         />
       </Layer>
+      <PaintWidget/>
     </Stage>
   );
 }
