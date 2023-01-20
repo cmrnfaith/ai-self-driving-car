@@ -21,6 +21,8 @@ code {
 
 .stage {
   background-color: #333;
+  user-select: none;
+  overflow: hidden;
 }
 .stage-wrapper {
   display: flex;
